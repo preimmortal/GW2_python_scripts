@@ -1,8 +1,12 @@
+# David Lau
+# Citadel of Flame Checker Program
+# Revision 6/5/13
+# V1
+
 import json
 import urllib.request
 import os
-import time
-import tkinter
+import pyperclip
 
 def getServers():
 	url = "https://api.guildwars2.com/v1/world_names.json"
@@ -55,7 +59,7 @@ def parseServers(serverObj):
 	jsonString += "}"
 	jsonObj = json.loads(jsonString)
 	return jsonObj
-	
+
 serverObj = getServers()
 
 serverHash = parseServers(serverObj)
@@ -97,6 +101,11 @@ print("\nCitadel of Flame is currently open on the following %s servers:\n" %(se
 for server in OPEN:
 	print(server)
 print()
+
+copyString = " - ".join(OPEN)
+CoFOPEN = "Citadel of Flame is Open on the following servers: " + copyString
+
+pyperclip.copy(CoFOPEN)
 
 os.system("pause")
 
